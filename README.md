@@ -18,6 +18,7 @@ Currently, the only supported operators are:
 * `-`
 * `*`
 * `/`
+
 and only integers/floats are supported as numbers.
 
 ## How to Test
