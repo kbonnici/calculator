@@ -27,3 +27,4 @@ cargo test
 
 ## Todo
 * [ ] Support for nested expressions. Example `1 + 2 / 3`, with operator precidence.
+* [ ] Remember the most recently calculated value to use in the next expression
