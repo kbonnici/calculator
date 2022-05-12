@@ -1,16 +1,12 @@
 struct Expr {
     lhs: f32,
     rhs: f32,
-    op: Operator
+    op: Operator,
 }
 
 impl Expr {
-    fn new(lhs: f32, rhs:f32, op: Operator) -> Self {
-        Self {
-            lhs,
-            rhs,
-            op
-        }
+    fn new(lhs: f32, rhs: f32, op: Operator) -> Self {
+        Self { lhs, rhs, op }
     }
 
     fn eval(&self) -> f32 {
@@ -33,7 +29,7 @@ enum Operator {
     PLUS,
     MINUS,
     MULT,
-    DIV
+    DIV,
 }
 
 pub fn eval_expression(expression: &str) -> f32 {
@@ -42,23 +38,23 @@ pub fn eval_expression(expression: &str) -> f32 {
 }
 fn parse_expression(expression: &str) -> Expr {
     let expression = expression.split(" ");
-    let expression:Vec<&str> = expression.collect();
+    let expression: Vec<&str> = expression.collect();
     if expression.len() != 3 {
         panic!("[Expression error]: Invalid expression")
     }
 
-    // parse LHS and RHS 
+    // parse LHS and RHS
     let lhs = expression[0];
-    let op  = expression[1];
+    let op = expression[1];
     let rhs = expression[2];
 
     let lhs: f32 = match lhs.parse() {
         Ok(x) => x,
-        Err(e) => panic!("[LHS error]: {}", e)
+        Err(e) => panic!("[LHS error]: {}", e),
     };
     let rhs: f32 = match rhs.parse() {
         Ok(x) => x,
-        Err(e) => panic!("[RHS error]: {}", e)
+        Err(e) => panic!("[RHS error]: {}", e),
     };
 
     // parse operator
@@ -67,15 +63,13 @@ fn parse_expression(expression: &str) -> Expr {
         "-" => Operator::MINUS,
         "*" => Operator::MULT,
         "/" => Operator::DIV,
-         _  => panic!("[Expression error]: Invalid operator")
+        _ => panic!("[Expression error]: Invalid operator"),
     };
 
     Expr::new(lhs, rhs, op)
 }
 
-
 #[cfg(test)]
-
 #[test]
 fn can_add() {
     let expr = Expr::new(5.0, 5.0, Operator::PLUS);
@@ -106,7 +100,6 @@ fn panic_at_divide_by_zero() {
     let expr = Expr::new(5.0, 0.0, Operator::DIV);
     expr.eval();
 }
-
 
 #[test]
 #[should_panic]

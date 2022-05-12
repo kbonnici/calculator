@@ -1,9 +1,10 @@
 use calculator::eval_expression;
 
-
 fn parse_input() -> String {
     let mut line = String::new();
-    std::io::stdin().read_line(&mut line).expect("Must enter an expression");
+    std::io::stdin()
+        .read_line(&mut line)
+        .expect("Must enter an expression");
     let line = line.trim();
     line.to_string()
 }
